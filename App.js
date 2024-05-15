@@ -4,6 +4,12 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ComponentsScreen from "./src/screens/ComponentsScreen";
 import ListScreen from "./src/screens/ListScreen";
 
+/* Stack Navigator
+
+- when passed any component, renders it and in the process - passes down a set of props
+
+*/
+
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
