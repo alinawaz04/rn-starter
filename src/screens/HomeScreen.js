@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet, View, Button } from "react-native";
 
 /* Buttons with React Native
 
@@ -7,8 +7,19 @@ import { Text, StyleSheet } from "react-native";
 - TouchableOpacity - very customizable primitive element that can detect a press on just about any kind of element.
 
 */
+
 const HomeScreen = () => {
-  return <Text style={styles.text}>Outline</Text>;
+  return (
+    <View>
+      <Text style={styles.text}>Outline</Text>
+      <Button
+        onPress={() => {
+          console.log("press");
+        }}
+        title="Go to Components Demo"
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
