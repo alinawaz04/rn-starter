@@ -18,13 +18,22 @@ const HomeScreen = ({ navigation }) => {
         }}
         title="Go to Components Demo"
       />
-      <TouchableOpacity
+
+      <Button
+        onPress={() => {
+          navigation.navigate("List");
+        }}
+        title="Go to List Demo"
+      />
+
+      {/* Below is the same way to achieve above, just with Button element being used instead */}
+      {/* <TouchableOpacity
         onPress={() => {
           navigation.navigate("List");
         }}
       >
         <Text>Go to List Demo</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
