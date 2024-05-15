@@ -8,6 +8,12 @@ lists - we usually begin with an array of objects
 - this is the react native equivalent to mapping array in react on web.
     - FlatList is well optimized specifically for mobile
 */
+
+/* why is a key prop necessary?
+- a key prop lets react know what specific object is changed/deleted. without it, react rebuilds the entire list after any change/deletion
+- performance optimization
+*/
+
 const ListScreen = () => {
   const friends = [
     { name: "Friend 1" },
