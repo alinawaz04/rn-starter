@@ -5,8 +5,6 @@ import SearchBar from "../components/SearchBar";
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
 
-  console.log(term);
-
   return (
     <View style={styles.background}>
       <SearchBar
