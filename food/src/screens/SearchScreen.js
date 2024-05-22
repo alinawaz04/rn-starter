@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
-import yelp from "../api/yelp";
 import useResults from "../hooks/useResults";
+import Results from "../components/Results";
 
 // useEffect
 // second arg of useEffect hook:
@@ -14,6 +14,13 @@ const SearchScreen = () => {
   const [term, setTerm] = useState("");
   const [searchApi, results, error] = useResults();
 
+  const filterResultsByPrice = (price) => {
+    // price === "$" || price === "$$" || price === "$$$"
+    return results.filter((result) => {
+      return result.price === price;
+    });
+  };
+
   return (
     <View style={styles.background}>
       <SearchBar
@@ -23,6 +30,10 @@ const SearchScreen = () => {
       />
       {error ? <Text>{error}</Text> : null}
       <Text>Found {results.length} results</Text>
+      <Results results={filterResultsByPrice("$")} title="Cost Effective" />
+      <Results results={filterResultsByPrice("$$")} title="Bit Pricier" />
+      <Results results={filterResultsByPrice("$$$")} title="Big Spender" />
+      <Results results={filterResultsByPrice("$$$$")} title="Very Expensive" />
     </View>
   );
 };
