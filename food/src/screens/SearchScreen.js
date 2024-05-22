@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import SearchBar from "../components/SearchBar";
 import yelp from "../api/yelp";
+import useResults from "../hooks/useResults";
 
 // useEffect
 // second arg of useEffect hook:
@@ -11,34 +12,7 @@ import yelp from "../api/yelp";
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [error, setError] = useState("");
-
-  const searchApi = async (searchTerm) => {
-    console.log("test");
-    try {
-      const res = await yelp.get("/search", {
-        params: {
-          limit: 50,
-          term: searchTerm,
-          location: "norman",
-        },
-      });
-      setResults(res.data.businesses);
-    } catch (err) {
-      setError("Something went wrong");
-    }
-  };
-
-  // bad code
-  // call searchApi when component is first rendered
-  // searchApi("pasta");
-  // causes an infinite loop of api calls
-
-  // correct code
-  useEffect(() => {
-    searchApi("pasta");
-  }, []); // array in second arg makes it so hook only runs when component is first rendered
+  const [searchApi, results, error] = useResults();
 
   return (
     <View style={styles.background}>
