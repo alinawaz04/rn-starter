@@ -12,7 +12,7 @@ export default () => {
         params: {
           limit: 50,
           term: searchTerm,
-          location: "san jose",
+          location: "norman",
         },
       });
       setResults(res.data.businesses);
@@ -28,7 +28,7 @@ export default () => {
 
   // correct code
   useEffect(() => {
-    searchApi("pasta");
+    searchApi("burger");
   }, []); // array in second arg makes it so hook only runs when component is first rendered
 
   return [searchApi, results, error];
