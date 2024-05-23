@@ -28,7 +28,7 @@ export default () => {
 
   // correct code
   useEffect(() => {
-    searchApi("pasta");
+    searchApi("fish");
   }, []); // array in second arg makes it so hook only runs when component is first rendered
 
   return [searchApi, results, error];

@@ -10,7 +10,7 @@ import ResultsList from "../components/ResultsList";
 //  empty array arg (e.g []) - run function in first arg when component is first rendered
 //  arg with value (e.g. [value]) - run function in first arg when component is first rendered and when 'value' changes.
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = useState("");
   const [searchApi, results, error] = useResults();
 
@@ -22,22 +22,37 @@ const SearchScreen = () => {
   };
 
   return (
-    <ScrollView style={styles.background}>
+    <View style={styles.background}>
       <SearchBar
         term={term}
         onTermChange={setTerm}
         onTermSubmit={() => searchApi(term)}
       />
       {error ? <Text>{error}</Text> : null}
-      <Text>Found {results.length} results</Text>
-      <ResultsList results={filterResultsByPrice("$")} title="Cost Effective" />
-      <ResultsList results={filterResultsByPrice("$$")} title="Bit Pricier" />
-      <ResultsList results={filterResultsByPrice("$$$")} title="Big Spender" />
-      <ResultsList
-        results={filterResultsByPrice("$$$$")}
-        title="Very Expensive"
-      />
-    </ScrollView>
+
+      <ScrollView>
+        <ResultsList
+          results={filterResultsByPrice("$")}
+          title="Cost Effective"
+          navigation={navigation}
+        />
+        <ResultsList
+          results={filterResultsByPrice("$$")}
+          title="Bit Pricier"
+          navigation={navigation}
+        />
+        <ResultsList
+          results={filterResultsByPrice("$$$")}
+          title="Big Spender"
+          navigation={navigation}
+        />
+        <ResultsList
+          results={filterResultsByPrice("$$$$")}
+          title="Very Expensive"
+          navigation={navigation}
+        />
+      </ScrollView>
+    </View>
   );
 };
 
