@@ -1,11 +1,10 @@
-import React, { useReducer } from "react";
+import createDataContext from "./createDataContext";
 
 /* CONTEXT
 - moves info from a parent to some nested child
 - complicated to setup, lots of special terms
 - easy to communicate data from a parent to super nested child
 */
-const BlogContext = React.createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -16,18 +15,14 @@ const reducer = (state, action) => {
   }
 };
 
-export const BlogProvider = ({ children }) => {
-  const [blogPosts, dispatch] = useReducer(reducer, []);
-
-  const addBlogPost = () => {
+const addBlogPost = (dispatch) => {
+  return () => {
     dispatch({ type: "add_blogpost" });
   };
-
-  return (
-    <BlogContext.Provider value={{ data: blogPosts, addBlogPost }}>
-      {children}
-    </BlogContext.Provider>
-  );
 };
 
-export default BlogContext;
+export const { Context, Provider } = createDataContext(
+  reducer,
+  { addBlogPost },
+  []
+);
