@@ -1,3 +1,39 @@
 {
-  "blogposts": [{ "id": 1, "title": "API POST", "content": "content for post" }]
+  "blogposts": [
+    {
+      "id": 1,
+      "title": "API POST",
+      "content": "content for post"
+    },
+    {
+      "id": "b862",
+      "title": "Test api",
+      "content": "Is the api chill?"
+    },
+    {
+      "id": "a1a1",
+      "title": "Test api again",
+      "content": "Akdflasdjf"
+    },
+    {
+      "id": "3bd2",
+      "title": "Test api again",
+      "content": "Akdflasdjf"
+    },
+    {
+      "id": "9b51",
+      "title": "Asasfdf",
+      "content": "Asdfadf"
+    },
+    {
+      "id": "6844",
+      "title": "Dfgag",
+      "content": ""
+    },
+    {
+      "id": "e245",
+      "title": "Asdfafasdf",
+      "content": "Addfasf"
+    }
+  ]
 }
