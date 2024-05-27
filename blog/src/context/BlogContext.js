@@ -1,4 +1,5 @@
 import createDataContext from "./createDataContext";
+import jsonServer from "../api/jsonServer";
 
 /* CONTEXT
 - moves info from a parent to some nested child
@@ -8,6 +9,8 @@ import createDataContext from "./createDataContext";
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case "get_blogposts":
+      return action.payload;
     case "edit_blogpost":
       return state.map((blogPost) => {
         return blogPost.id === action.payload.id ? action.payload : blogPost;
@@ -26,6 +29,13 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+};
+
+const getBlogPosts = (dispatch) => {
+  return async () => {
+    const response = await jsonServer.get("/blogposts");
+    dispatch({ type: "get_blogposts", payload: response.data });
+  };
 };
 
 const addBlogPost = (dispatch) => {
@@ -54,6 +64,6 @@ const editBlogPost = (dispatch) => {
 
 export const { Context, Provider } = createDataContext(
   reducer,
-  { addBlogPost, deleteBlogPost, editBlogPost },
-  [{ title: "TEST POST", content: "TEST CONTENT", id: 1 }]
+  { addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
+  []
 );
