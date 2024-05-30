@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { Text } from "react-native-elements";
 import { Context as AuthContext } from "../context/AuthContext";
-import Spacer from "../components/Spacer";
 import AuthForm from "../components/AuthForm";
 import NavLink from "../components/NavLink";
 
-const SignUpScreen = ({ navigation, headerShown = false }) => {
+const SignUpScreen = () => {
   const { state, signUp } = useContext(AuthContext);
 
   return (
@@ -23,6 +21,12 @@ const SignUpScreen = ({ navigation, headerShown = false }) => {
       />
     </View>
   );
+};
+
+SignUpScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  };
 };
 
 const styles = StyleSheet.create({
