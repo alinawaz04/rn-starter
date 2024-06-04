@@ -16,10 +16,21 @@ import { setNavigator } from "./src/navigationRef";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
 import { Provider as LocationProvider } from "./src/context/LocationContext";
 import { Provider as TrackProvider } from "./src/context/TrackContext";
+import { FontAwesome } from "@expo/vector-icons";
 
 LogBox.ignoreLogs([
   "Warning: TextElement: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.",
 ]);
+
+const trackListFlow = createStackNavigator({
+  TrackList: TrackListScreen,
+  TrackDetail: TrackDetailScreen,
+});
+
+trackListFlow.navigationOptions = {
+  title: "Tracks",
+  tabBarIcon: <FontAwesome name="th-list" size={20} />,
+};
 
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
@@ -27,14 +38,14 @@ const switchNavigator = createSwitchNavigator({
     SignUp: SignUpScreen,
     SignIn: SignInScreen,
   }),
-  mainFlow: createMaterialBottomTabNavigator({
-    trackListFlow: createStackNavigator({
-      TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen,
-    }),
-    TrackCreate: TrackCreateScreen,
-    Account: AccountScreen,
-  }),
+  mainFlow: createMaterialBottomTabNavigator(
+    {
+      trackListFlow,
+      TrackCreate: TrackCreateScreen,
+      Account: AccountScreen,
+    },
+    { barStyle: { backgroundColor: "#fff", paddingBottom: 15 } }
+  ),
 });
 
 const App = createAppContainer(switchNavigator);
