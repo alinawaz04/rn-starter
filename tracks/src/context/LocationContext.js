@@ -1,6 +1,10 @@
 import createDataContext from "./createDataContext";
 import trackerApi from "../api/tracker";
 
+/*
+Location Context: Tracking the users location + storing points
+*/
+
 const locationReducer = (state, action) => {
   switch (action.type) {
     case "add_current_location":
