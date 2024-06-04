@@ -1,4 +1,5 @@
 import createDataContext from "./createDataContext";
+import trackerApi from "../api/tracker";
 
 /*
 Track Context: Saving + retrieving existing tracks from out API
